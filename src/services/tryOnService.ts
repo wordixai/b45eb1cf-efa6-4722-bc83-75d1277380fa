@@ -5,10 +5,13 @@ import type {
   ProcessingStage
 } from '@/types';
 
-// 默认API配置 - 可根据实际API修改
+// 从环境变量读取API配置
 const defaultConfig: TryOnAPIConfig = {
-  endpoint: '/api/try-on',
-  apiKey: undefined,
+  endpoint: import.meta.env.VITE_TRYON_API_ENDPOINT || '/api/try-on',
+  apiKey: import.meta.env.VITE_TRYON_API_KEY || undefined,
+  headers: import.meta.env.VITE_TRYON_API_HEADER_NAME
+    ? { [import.meta.env.VITE_TRYON_API_HEADER_NAME]: import.meta.env.VITE_TRYON_API_HEADER_VALUE }
+    : undefined,
 };
 
 // 处理阶段配置
