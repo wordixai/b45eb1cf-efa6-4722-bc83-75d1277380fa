@@ -4,10 +4,249 @@
 
 @layer base {
   :root {
-   
+    /* 主色调 - 靛蓝渐变 */
+    --primary: 234 89% 74%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 252 94% 67%;
+
+    /* 强调色 - 时尚粉 */
+    --accent: 330 81% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    /* 成功/警告/错误 */
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* 背景色 */
+    --background: 240 20% 98%;
+    --foreground: 222 47% 11%;
+
+    /* 卡片 */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* 次要元素 */
+    --secondary: 240 10% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    /* 静音元素 */
+    --muted: 240 10% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* 弹出层 */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* 边框/输入框 */
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 234 89% 74%;
+
+    /* 圆角 */
+    --radius: 1rem;
+
+    /* 渐变 */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
+    --gradient-subtle: linear-gradient(180deg, hsl(240 20% 98%), hsl(240 20% 96%));
+
+    /* 阴影 */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.3);
+    --shadow-card: 0 4px 20px -4px rgb(0 0 0 / 0.08);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 234 89% 74%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 10% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 240 6% 90%;
+    --sidebar-ring: 234 89% 74%;
   }
 
   .dark {
+    --primary: 234 89% 74%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 252 94% 67%;
 
+    --accent: 330 81% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --background: 222 47% 11%;
+    --foreground: 240 20% 98%;
+
+    --card: 223 47% 14%;
+    --card-foreground: 240 20% 98%;
+
+    --secondary: 223 47% 17%;
+    --secondary-foreground: 240 20% 98%;
+
+    --muted: 223 47% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --popover: 223 47% 14%;
+    --popover-foreground: 240 20% 98%;
+
+    --border: 223 47% 20%;
+    --input: 223 47% 20%;
+    --ring: 234 89% 74%;
+
+    --sidebar-background: 223 47% 14%;
+    --sidebar-foreground: 240 20% 98%;
+    --sidebar-primary: 234 89% 74%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 223 47% 17%;
+    --sidebar-accent-foreground: 240 20% 98%;
+    --sidebar-border: 223 47% 20%;
+    --sidebar-ring: 234 89% 74%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* 渐变按钮 */
+  .btn-gradient {
+    @apply relative overflow-hidden rounded-xl font-semibold transition-all duration-300;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 40px hsl(var(--primary) / 0.4);
+  }
+
+  .btn-gradient:active {
+    transform: translateY(0);
+  }
+
+  /* 上传区域 */
+  .dropzone {
+    @apply relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-card transition-all duration-300;
+  }
+
+  .dropzone:hover {
+    @apply border-primary bg-primary/5;
+  }
+
+  .dropzone.active {
+    @apply border-primary bg-primary/10;
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* 服装卡片 */
+  .clothing-card {
+    @apply relative overflow-hidden rounded-xl bg-card transition-all duration-300 cursor-pointer;
+    box-shadow: var(--shadow-card);
+  }
+
+  .clothing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .clothing-card.selected {
+    @apply ring-2 ring-primary ring-offset-2;
+  }
+
+  /* 进度条动画 */
+  .progress-shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .progress-shimmer::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  /* 玻璃态效果 */
+  .glass {
+    @apply bg-card/80 backdrop-blur-lg;
+  }
+}
+
+@layer utilities {
+  /* 渐变文字 */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  /* 安全区域 */
+  .safe-area-inset {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* 动画关键帧 */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

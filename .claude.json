@@ -34,7 +34,8 @@
     "tengu_attribution_header": false,
     "tengu_workout": false,
     "tengu_plan_mode_interview_phase": false,
-    "tengu_file_write_optimization": false
+    "tengu_file_write_optimization": false,
+    "tengu_cork_m4q": false
   },
   "userID": "c4308469da06f3cac581b67f4547ef12c7e0ca1b55df07cb1c5973bf16708f9c",
   "firstStartTime": "2026-02-06T01:40:17.714Z",
@@ -45,5 +46,26 @@
   "clientDataCache": {
     "data": null,
     "timestamp": 1770342018775
+  },
+  "projects": {
+    "/app": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "app.py",
+        "config.py",
+        "main.js",
+        "database.py",
+        "handler.ts"
+      ],
+      "exampleFilesGeneratedAt": 1770345361526
+    }
   }
 }
